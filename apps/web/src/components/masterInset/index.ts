@@ -1,0 +1,1 @@
+export { MasterInset } from './masterInset';

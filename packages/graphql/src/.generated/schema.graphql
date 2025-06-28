@@ -1,0 +1,100 @@
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.This scalar is serialized to a string in ISO 8601 format and parsed from a string in ISO 8601 format.
+"""
+scalar DateTime
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""Root Mutation"""
+type Mutation {
+  createReport(month: Int!, year: Int!): Report
+  syncProducts(input: MutationSyncProductsInput!): [Product!]
+  syncReport(input: MutationSyncReportInput!): Report
+}
+
+input MutationSyncProductsInput {
+  deleteProductIds: [String!]!
+  upsertProducts: [ProductInput!]!
+}
+
+input MutationSyncReportInput {
+  deleteReportItemIds: [String!]!
+  id: String!
+  upsertReportItems: [ReportItemInput!]!
+}
+
+type PendingReportItem {
+  inInventory: Float
+  inQuantity: Float
+  isPending: Boolean
+  orderIndex: Int
+  outInventory: Float
+  outQuantity: Float
+  product: Product
+  productId: String
+  reportId: String
+  yearInQuantity: Float
+}
+
+type Product {
+  createdAt: DateTime
+  id: ID
+  items: [ReportItem!]
+  legalNumber: String
+  name: String
+  observations: String
+  packagingType: String
+  storageType: String
+  updatedAt: DateTime
+  usageType: String
+}
+
+input ProductInput {
+  id: ID
+  legalNumber: String
+  name: String!
+  observations: String
+  packagingType: String
+  storageType: String
+  usageType: String
+}
+
+"""Root Query"""
+type Query {
+  product(id: String!): Product
+  products: [Product!]
+  report(month: Int!, year: Int!): Report
+  reportItems: [ReportItem!]
+  reports: [Report!]
+}
+
+type Report {
+  id: ID
+  items: [ReportItem!]
+  month: Int
+  pendingItems: [PendingReportItem!]
+  year: Int
+}
+
+type ReportItem {
+  inInventory: Float
+  inQuantity: Float
+  isPending: Boolean
+  orderIndex: Int
+  outInventory: Float
+  outQuantity: Float
+  product: Product
+  productId: String
+  report: Report
+  reportId: String
+  yearInQuantity: Float
+}
+
+input ReportItemInput {
+  inQuantity: Float!
+  outQuantity: Float!
+  productId: String!
+}

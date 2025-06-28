@@ -1,0 +1,20 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "dev": {
+      "dependsOn": ["generate"]
+    },
+    "build": {
+      "dependsOn": ["generate"],
+      "outputs": [
+        "dist/**"
+      ]
+    },
+    "generate": {
+      "outputs": [
+        "./src/.generated/*",
+        "../../packages/graphql/src/.generated"
+      ]
+    }
+  }
+}

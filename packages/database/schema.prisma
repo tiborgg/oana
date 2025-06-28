@@ -1,0 +1,58 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "generated/client"
+  binaryTargets = ["native", "debian-openssl-1.1.x", "debian-openssl-3.0.x", "linux-musl-openssl-3.0.x"]
+}
+
+generator pothos {
+  provider = "prisma-pothos-types"
+  output   = "generated/pothos/index.ts"
+}
+
+model Product {
+  id   String @id @default(cuid())
+  name String
+
+  packagingType String?
+  storageType   String?
+  usageType     String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt @default(now())
+  orderIndex    Int @default(-1)
+  legalNumber   String?
+  observations  String?
+  unit          String?
+  recordedAt    DateTime?
+  
+  items ReportItem[]
+}
+
+model Report {
+  id    String      @id @default(cuid())
+  year  Int
+  month Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt @default(now())
+  items ReportItem[]
+
+  @@index([year, month])
+}
+
+model ReportItem {
+  reportId  String
+  productId String
+  inQuantity  Float @default(0)
+  outQuantity Float @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt @default(now())
+  orderIndex    Int @default(-1)
+  report  Report  @relation(fields: [reportId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@id([reportId, productId])
+}

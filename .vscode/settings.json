@@ -1,0 +1,110 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  "editor.snippetSuggestions": "bottom",
+  "editor.quickSuggestions": {
+    "comments": "on",
+    "strings": "on",
+    "other": "on"
+  },
+  "editor.quickSuggestionsDelay": 1000,
+  "editor.suggest.insertMode": "replace",
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "editor.parameterHints.enabled": false,
+  "editor.autoClosingBrackets": "never",
+  "editor.wordWrap": "off",
+  "editor.wordWrapColumn": 200,
+  "editor.autoClosingQuotes": "never",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.find.autoFindInSelection": "multiline",
+  "editor.autoClosingDelete": "never",
+  "editor.autoClosingOvertype": "never",
+  "editor.autoSurround": "never",
+  "explorer.compactFolders": false,
+  "html.autoCreateQuotes": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
+  "terminal.integrated.cwd": "./",
+  "terminal.integrated.gpuAcceleration": "off",
+  "terminal.explorerKind": "external",
+  "terminal.integrated.scrollback": 50000,
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "cmake.configureOnOpen": false,
+  "emmet.showAbbreviationSuggestions": false,
+  "emmet.showExpandedAbbreviation": "never",
+  "gitlens.codeLens.enabled": false,
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.hovers.enabled": false,
+  "gitlens.telemetry.enabled": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/build": true
+  },
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "entity.other.attribute-name.class.css",
+        ],
+        "settings": {
+          "foreground": "#e5ff00"
+        }
+      },
+      {
+        "scope": [
+          "entity.other.attribute-name.id.css",
+        ],
+        "settings": {
+          "foreground": "#00ff6a"
+        }
+      },
+      {
+        "scope": [
+          "entity.other.attribute-name.pseudo-class.css",
+          "entity.other.attribute-name.pseudo-element.css"
+        ],
+        "settings": {
+          "fontStyle": "italic",
+          "foreground": "#ddae15"
+        }
+      },
+      {
+        "scope": "variable.scss",
+        "settings": {
+          "foreground": "#d16969"
+        }
+      },
+      {
+        "scope": "entity.name.tag.css",
+        "settings": {
+          "foreground": "#9CDCFE"
+        }
+      },
+      {
+        "scope": [
+          "meta.decorator.ts",
+          "meta.decorator.tsx",
+        ],
+        "settings": {
+          "foreground": "#4EC9B0",
+          "fontStyle": "italic"
+        }
+      },
+      {
+        "scope": [
+          "variable.other.less"
+        ],
+        "settings": {
+          "foreground": "#4EC9B0"
+        }
+      }
+    ]
+  }
+}

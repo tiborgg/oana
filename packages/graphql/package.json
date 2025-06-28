@@ -1,0 +1,14 @@
+{
+  "name": "@repo/graphql",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit"
+  },
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    }
+  }
+}

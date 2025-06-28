@@ -1,0 +1,40 @@
+{
+  "name": "@repo/database",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy",
+    "prisma:migrate-dev": "prisma migrate dev",
+    "prisma:format": "prisma format",
+    "prisma:reset": "prisma migrate reset --force"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.11",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@pothos/core": "^4.7.0",
+    "@pothos/plugin-prisma": "^4.9.1",
+    "@prisma/client": "^6.3.1",
+    "@repo/core": "workspace:^",
+    "pg": "^8.13.3",
+    "prisma": "^6.3.1"
+  },
+  "exports": {
+    "./prisma": {
+      "types": "./generated/client/index.d.ts",
+      "default": "./generated/client/index.js"
+    },
+    "./pothos": {
+      "types": "./generated/pothos/index.d.ts",
+      "default": "./generated/pothos/index.js"
+    },
+    ".": {
+      "default": "./src/index.ts"
+    }
+  }
+}

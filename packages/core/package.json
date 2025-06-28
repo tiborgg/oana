@@ -1,0 +1,39 @@
+{
+  "name": "@repo/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "build": "tsup src/index.ts --format cjs,esm --dts"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "chalk": "^5.3.0",
+    "classnames": "^2.5.1",
+    "color": "^4.2.3",
+    "dayjs": "^1.11.13",
+    "mobx": "^6.13.6",
+    "react": "^19.0.0",
+    "seedrandom": "^3.0.5"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "@types/color": "^4.2.0",
+    "@types/lodash": "^4.17.14",
+    "@types/react": "^18.3.3",
+    "@types/seedrandom": "^3.0.8",
+    "tsup": "^8.3.5",
+    "type-fest": "^4.41.0"
+  },
+  "exports": {
+    "./client": {
+      "types": "./dist/client/index.d.ts",
+      "default": "./dist/client/index.js"
+    },
+    ".": {
+      "default": "./src/index.ts"
+    }
+  }
+}

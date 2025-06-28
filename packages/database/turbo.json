@@ -1,0 +1,19 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "dev": {
+      "dependsOn": ["prisma:generate"]
+    },
+    "build": {
+      "dependsOn": ["prisma:generate"],
+      "outputs": [
+        "dist/**"
+      ]
+    },
+    "prisma:generate": {
+      "outputs": [
+        "generated/client/*"
+      ]
+    }
+  }
+}
