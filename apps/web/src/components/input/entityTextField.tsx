@@ -6,14 +6,14 @@ type Props = {
   item: EntityTextFieldProxy;
 }
 
-export const ProductListItemTextField = observer(({ item }: Props) => {
+export const EntityTextField = observer(({ item }: Props) => {
 
   if (item.isEditing) {
     return (
       <Input
         value={item.value ?? ''}
         onChange={(e) => item.value = e.target.value}
-        className="w-full" />
+        className="w-full bg-background" />
     );
   }
 

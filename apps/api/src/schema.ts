@@ -98,10 +98,7 @@ async function resolveReport(report: PrismaReport) {
 
   const products = await prisma.product.findMany({
     where: {
-      OR: [
-        { recordedAt: { lte: productCutoffDate } },
-        { recordedAt: null }
-      ]
+      registeredAt: { lte: productCutoffDate }
     }
   });
 
@@ -231,13 +228,14 @@ const Product = builder.prismaObject('Product', {
   fields: (t) => ({
     id: t.exposeID('id'),
     name: t.exposeString('name'),
+    unit: t.exposeString('unit', { nullable: true }),
     packagingType: t.exposeString('packagingType', { nullable: true }),
     storageType: t.exposeString('storageType', { nullable: true }),
     usageType: t.exposeString('usageType', { nullable: true }),
-    legalNumber: t.exposeString('legalNumber', { nullable: true }),
     observations: t.exposeString('observations', { nullable: true }),
     createdAt: t.expose('createdAt', { type: 'DateTime' }),
     updatedAt: t.expose('updatedAt', { type: 'DateTime' }),
+    registeredAt: t.expose('registeredAt', { type: 'DateTime' }),
     items: t.relation('items'),
   }),
 });
@@ -381,11 +379,12 @@ const ProductInput = builder.inputType('ProductInput', {
   fields: (t) => ({
     id: t.id(),
     name: t.string({ required: true }),
+    unit: t.string(),
     packagingType: t.string(),
     storageType: t.string(),
     usageType: t.string(),
-    legalNumber: t.string(),
     observations: t.string(),
+    registeredAt: t.field({ type: 'DateTime' })
   }),
 });
 
@@ -424,22 +423,24 @@ builder.mutationField('syncProducts', t => {
             },
             create: {
               name: productInput.name,
+              unit: productInput.unit,
               packagingType: productInput.packagingType,
               storageType: productInput.storageType,
               usageType: productInput.usageType,
-              legalNumber: productInput.legalNumber,
               observations: productInput.observations,
               createdAt: dayjs.utc().toDate(),
               updatedAt: dayjs.utc().toDate(),
+              registeredAt: productInput.registeredAt ?? dayjs.utc().toDate()
             },
             update: {
               name: productInput.name,
+              unit: productInput.unit,
               packagingType: productInput.packagingType,
               storageType: productInput.storageType,
               usageType: productInput.usageType,
-              legalNumber: productInput.legalNumber,
               observations: productInput.observations,
               updatedAt: dayjs.utc().toDate(),
+              registeredAt: productInput.registeredAt ?? dayjs.utc().toDate()
             }
           })
         }),

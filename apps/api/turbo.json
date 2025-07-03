@@ -11,6 +11,7 @@
       ]
     },
     "generate": {
+      "dependsOn": ["@repo/database#prisma:generate"],
       "outputs": [
         "./src/.generated/*",
         "../../packages/graphql/src/.generated"

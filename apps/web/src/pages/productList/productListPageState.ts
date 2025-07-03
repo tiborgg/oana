@@ -4,6 +4,7 @@ import { Product } from '@repo/graphql';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { isNonEmptyString } from '@repo/core/client';
 import { ProductListItemProxy } from './productListItemProxy';
+import dayjs from 'dayjs';
 
 type Params = {
 
@@ -62,13 +63,14 @@ export class ProductListPageState {
           products {
             id
             name
+            unit
             packagingType
             storageType
             usageType
-            legalNumber
             observations
             createdAt
             updatedAt
+            registeredAt
           }
         }`,
         fetchPolicy: 'network-only'
@@ -84,11 +86,12 @@ export class ProductListPageState {
         return {
           id: item.source?.id,
           name: item.name.value,
+          unit: item.unit.value,
           packagingType: item.packagingType.value,
           storageType: item.storageType.value,
           usageType: item.usageType.value,
-          legalNumber: item.legalNumber.value,
           observations: item.observations.value,
+          registeredAt: item.registeredAt.value?.toDate(),
         };
       });
 
@@ -104,11 +107,14 @@ export class ProductListPageState {
           syncProducts(input: $input) {
             id
             name
+            unit
             packagingType
             storageType
             usageType
-            legalNumber
             observations
+            createdAt
+            updatedAt
+            registeredAt
           }
         }`,
 
@@ -130,7 +136,8 @@ export class ProductListPageState {
       source: null,
       packagingTypeSuggestions: () => this.packagingTypeSuggestions,
       storageTypeSuggestions: () => this.storageTypeSuggestions,
-      usageTypeSuggestions: () => this.usageTypeSuggestions
+      usageTypeSuggestions: () => this.usageTypeSuggestions,
+      defaultRegisteredAt: dayjs.utc('2020-01-01')
     });
 
     itemProxy.setEditing(true);
@@ -150,7 +157,8 @@ export class ProductListPageState {
         source: product,
         packagingTypeSuggestions: () => this.packagingTypeSuggestions,
         storageTypeSuggestions: () => this.storageTypeSuggestions,
-        usageTypeSuggestions: () => this.usageTypeSuggestions
+        usageTypeSuggestions: () => this.usageTypeSuggestions,
+        defaultRegisteredAt: dayjs.utc('2020-01-01')
       })));
   }
   

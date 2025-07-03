@@ -24,10 +24,9 @@ model Product {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt @default(now())
   orderIndex    Int @default(-1)
-  legalNumber   String?
   observations  String?
   unit          String?
-  recordedAt    DateTime?
+  registeredAt  DateTime @default(now())
   
   items ReportItem[]
 }

@@ -104,11 +104,12 @@ export class ReportPageState {
               product {
                 id
                 name
+                unit
                 packagingType
                 storageType
                 usageType
-                legalNumber
                 observations
+                registeredAt
               }
             }
             pendingItems {
@@ -123,11 +124,12 @@ export class ReportPageState {
               product {
                 id
                 name
+                unit
                 packagingType
                 storageType
                 usageType
-                legalNumber
                 observations
+                registeredAt
               }
             }
           }
@@ -199,11 +201,12 @@ export class ReportPageState {
               product {
                 id
                 name
+                unit
                 packagingType
                 storageType
                 usageType
-                legalNumber
                 observations
+                registeredAt
               }
             }
             pendingItems {
@@ -218,11 +221,12 @@ export class ReportPageState {
               product {
                 id
                 name
+                unit
                 packagingType
                 storageType
                 usageType
-                legalNumber
                 observations
+                registeredAt
               }
             }
           }

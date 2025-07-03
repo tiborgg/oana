@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { EntityNumberField } from '@/components/input/entityNumberField';
 import { ReportPageState } from './reportPageState';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../components/ui/table';
+import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '../../components/ui/table';
 import { Input } from '@/components/ui/input';
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
@@ -87,6 +87,7 @@ export const ReportPage = observer(() => {
           <TableRow>
             <TableHead className="pl-4 w-12">Nr. Crt.</TableHead>
             <TableHead>Denumire</TableHead>
+            <TableHead>U.M.</TableHead>
             <TableHead>Stoc luna precedenta</TableHead>
             <TableHead>Intrari an</TableHead>
             <TableHead>Intrari luna</TableHead>
@@ -132,9 +133,6 @@ export const ReportPage = observer(() => {
                   </DropdownMenuCheckboxItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-
-
-
             </TableHead>
           </TableRow>
         </TableHeader>
@@ -152,6 +150,7 @@ export const ReportPage = observer(() => {
 
               <TableCell className="pl-4">{index + 1}</TableCell>
               <TableCell className="font-medium">{item.product?.name}</TableCell>
+              <TableCell className="font-medium">{item.product?.unit}</TableCell>
               <TableCell>{item.inInventory}</TableCell>
               <TableCell>{
                 (item.yearInQuantity ?? 0) +
@@ -179,6 +178,18 @@ export const ReportPage = observer(() => {
             </TableRow>
           ))}
         </TableBody>
+        
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={7} className="text-right">
+              <Button
+                variant="default"
+                onClick={model.handleSaveButtonClick}>
+                Salvează
+              </Button>
+            </TableCell>
+          </TableRow>
+        </TableFooter>
       </Table>
 
     </div>

@@ -13,7 +13,7 @@ export const EntityNumberField = observer(({ item }: Props) => {
       <Input
         value={item.value ?? ''}
         onChange={(e) => item.value = Number(e.target.value)}
-        className="w-16" />
+        className="w-16 bg-background" />
     );
   }
 

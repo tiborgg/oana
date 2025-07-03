@@ -79,22 +79,24 @@ export type Product = {
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   id?: Maybe<Scalars['ID']['output']>;
   items?: Maybe<Array<ReportItem>>;
-  legalNumber?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   observations?: Maybe<Scalars['String']['output']>;
   packagingType?: Maybe<Scalars['String']['output']>;
+  registeredAt?: Maybe<Scalars['DateTime']['output']>;
   storageType?: Maybe<Scalars['String']['output']>;
+  unit?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   usageType?: Maybe<Scalars['String']['output']>;
 };
 
 export type ProductInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
-  legalNumber?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   observations?: InputMaybe<Scalars['String']['input']>;
   packagingType?: InputMaybe<Scalars['String']['input']>;
+  registeredAt?: InputMaybe<Scalars['DateTime']['input']>;
   storageType?: InputMaybe<Scalars['String']['input']>;
+  unit?: InputMaybe<Scalars['String']['input']>;
   usageType?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -170,16 +172,17 @@ export type PendingReportItemFieldPolicy = {
 	reportId?: FieldPolicy<any> | FieldReadFunction<any>,
 	yearInQuantity?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ProductKeySpecifier = ('createdAt' | 'id' | 'items' | 'legalNumber' | 'name' | 'observations' | 'packagingType' | 'storageType' | 'updatedAt' | 'usageType' | ProductKeySpecifier)[];
+export type ProductKeySpecifier = ('createdAt' | 'id' | 'items' | 'name' | 'observations' | 'packagingType' | 'registeredAt' | 'storageType' | 'unit' | 'updatedAt' | 'usageType' | ProductKeySpecifier)[];
 export type ProductFieldPolicy = {
 	createdAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	items?: FieldPolicy<any> | FieldReadFunction<any>,
-	legalNumber?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	observations?: FieldPolicy<any> | FieldReadFunction<any>,
 	packagingType?: FieldPolicy<any> | FieldReadFunction<any>,
+	registeredAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	storageType?: FieldPolicy<any> | FieldReadFunction<any>,
+	unit?: FieldPolicy<any> | FieldReadFunction<any>,
 	updatedAt?: FieldPolicy<any> | FieldReadFunction<any>,
 	usageType?: FieldPolicy<any> | FieldReadFunction<any>
 };

@@ -1,8 +1,11 @@
-import { EntityAutocompleteTextFieldSuggestions } from '@/components/input/entityAutocompleteTextFieldProxy';
 import { Product } from '@repo/graphql';
 import { action, computed, makeObservable, observable } from 'mobx';
+import dayjs from 'dayjs';
+import { EntityAutocompleteTextFieldSuggestions } from '@/components/input/entityAutocompleteTextFieldProxy';
 import { EntityTextFieldProxy } from '@/components/input/entityTextFieldProxy';
 import { EntityAutocompleteTextFieldProxy } from '@/components/input/entityAutocompleteTextFieldProxy';
+import { EntityDateTimeFieldProxy } from '@/components/input/entityDateTimeFieldProxy';
+import { EntitySelectFieldProxy } from '@/components/input/entitySelectFieldProxy';
 
 type ProductListItemProxyProps = {
   source: Product | null;
@@ -10,6 +13,7 @@ type ProductListItemProxyProps = {
   packagingTypeSuggestions: EntityAutocompleteTextFieldSuggestions;
   storageTypeSuggestions: EntityAutocompleteTextFieldSuggestions;
   usageTypeSuggestions: EntityAutocompleteTextFieldSuggestions;
+  defaultRegisteredAt: dayjs.Dayjs;
 }
 
 export class ProductListItemProxy {
@@ -45,14 +49,26 @@ export class ProductListItemProxy {
       suggestions: props.usageTypeSuggestions
     });
 
-    this.legalNumber = new EntityTextFieldProxy({
+    this.unit = new EntitySelectFieldProxy({
       parent: this,
-      value: source?.legalNumber ?? null
+      value: source?.unit ?? null,
+      items: {
+        'l': 'litru',
+        'ml': 'mililitru',
+        'g': 'gram',
+        'mg': 'miligram',
+        'kg': 'kilogram'
+      }
     });
 
     this.observations = new EntityTextFieldProxy({
       parent: this,
       value: source?.observations ?? null
+    });
+
+    this.registeredAt = new EntityDateTimeFieldProxy({
+      parent: this,
+      value: dayjs(source?.registeredAt ?? props.defaultRegisteredAt)
     });
   }
 
@@ -65,11 +81,12 @@ export class ProductListItemProxy {
   }
 
   readonly name: EntityTextFieldProxy;
+  readonly unit: EntitySelectFieldProxy;
   readonly packagingType: EntityAutocompleteTextFieldProxy;
   readonly storageType: EntityAutocompleteTextFieldProxy;
   readonly usageType: EntityAutocompleteTextFieldProxy;
-  readonly legalNumber: EntityTextFieldProxy;
   readonly observations: EntityTextFieldProxy;
+  readonly registeredAt: EntityDateTimeFieldProxy;
 
   readonly isDraft: boolean = false;
   @observable.ref accessor isEditing: boolean = false;
@@ -88,11 +105,12 @@ export class ProductListItemProxy {
   @computed get isDirty() {
     return (
       this.name.isDirty ||
+      this.unit.isDirty ||
       this.packagingType.isDirty ||
       this.storageType.isDirty ||
       this.usageType.isDirty ||
-      this.legalNumber.isDirty ||
-      this.observations.isDirty
+      this.observations.isDirty ||
+      this.registeredAt.isDirty
     );
   }
 }

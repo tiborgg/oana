@@ -76,22 +76,24 @@ export type Product = {
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   id?: Maybe<Scalars['ID']['output']>;
   items?: Maybe<Array<ReportItem>>;
-  legalNumber?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   observations?: Maybe<Scalars['String']['output']>;
   packagingType?: Maybe<Scalars['String']['output']>;
+  registeredAt?: Maybe<Scalars['DateTime']['output']>;
   storageType?: Maybe<Scalars['String']['output']>;
+  unit?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   usageType?: Maybe<Scalars['String']['output']>;
 };
 
 export type ProductInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
-  legalNumber?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   observations?: InputMaybe<Scalars['String']['input']>;
   packagingType?: InputMaybe<Scalars['String']['input']>;
+  registeredAt?: InputMaybe<Scalars['DateTime']['input']>;
   storageType?: InputMaybe<Scalars['String']['input']>;
+  unit?: InputMaybe<Scalars['String']['input']>;
   usageType?: InputMaybe<Scalars['String']['input']>;
 };
 

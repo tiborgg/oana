@@ -9,7 +9,7 @@ type Props = {
   item: EntityAutocompleteTextFieldProxy;
 }
 
-export const ProductListItemAutocompleteTextField = observer(({ item }: Props) => {
+export const EntityAutocompleteTextField = observer(({ item }: Props) => {
 
   if (item.isEditing) {
     return (
@@ -64,6 +64,6 @@ export const ProductListItemAutocompleteTextField = observer(({ item }: Props) =
   }
 
   return (
-    <div className="px-[calc(0.75rem+1px)]">{item.value}</div>
+    <div className="px-[calc(0.75rem+1px)]">{item.value || '-'}</div>
   );
 });

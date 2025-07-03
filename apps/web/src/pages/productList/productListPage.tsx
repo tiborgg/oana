@@ -5,8 +5,10 @@ import { observer } from 'mobx-react-lite';
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Pencil, Trash } from 'lucide-react';
-import { ProductListItemTextField } from '@/components/input/entityTextField';
-import { ProductListItemAutocompleteTextField } from '@/components/input/entityAutocompleteTextField';
+import { EntityTextField } from '@/components/input/entityTextField';
+import { EntityAutocompleteTextField } from '@/components/input/entityAutocompleteTextField';
+import { EntityDateTimeField } from '@/components/input/entityDateTimeField';
+import { EntitySelectField } from '@/components/input/entitySelectField';
 
 export const ProductListPage = observer(() => {
 
@@ -52,12 +54,13 @@ export const ProductListPage = observer(() => {
         <TableHeader>
           <TableRow>
             <TableHead className="whitespace-normal pl-4">Nume</TableHead>
-            <TableHead className="whitespace-normal">Observatii</TableHead>
-            <TableHead className="whitespace-normal">Nr. identif.</TableHead>
-            <TableHead className="whitespace-normal">Mod de ambalare</TableHead>
-            <TableHead className="whitespace-normal">Mod de depozitare</TableHead>
-            <TableHead className="whitespace-normal">Mod de folosire</TableHead>
-            <TableHead>Actiuni</TableHead>
+            <TableHead className="whitespace-normal px-[calc(1.25rem+1px)]">U.M.</TableHead>
+            <TableHead className="whitespace-normal px-[calc(1.25rem+1px)]">Mod de ambalare</TableHead>
+            <TableHead className="whitespace-normal px-[calc(1.25rem+1px)]">Mod de depozitare</TableHead>
+            <TableHead className="whitespace-normal px-[calc(1.25rem+1px)]">Mod de folosire</TableHead>
+            <TableHead className="whitespace-normal px-[calc(1.25rem+1px)]">Inregistrat la</TableHead>
+            <TableHead className="whitespace-normal px-[calc(1.25rem+1px)]">Observatii</TableHead>
+            <TableHead className="whitespace-normal px-[calc(1.25rem+1px)]">Actiuni</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -71,28 +74,32 @@ export const ProductListPage = observer(() => {
               ].join(' ')}>
 
               <TableCell className="w-[20%] pl-1">
-                <ProductListItemTextField
+                <EntityTextField
                   item={item.name} />
               </TableCell>
-              <TableCell className="w-[20%]">
-                <ProductListItemTextField
-                  item={item.observations} />
+              <TableCell className="w-[10%]">
+                <EntitySelectField
+                  item={item.unit} />
               </TableCell>
               <TableCell className="w-[10%]">
-                <ProductListItemTextField
-                  item={item.legalNumber} />
-              </TableCell>
-              <TableCell className="w-[10%]">
-                <ProductListItemAutocompleteTextField
+                <EntityAutocompleteTextField
                   item={item.packagingType} />
               </TableCell>
               <TableCell className="w-[10%]">
-                <ProductListItemAutocompleteTextField
+                <EntityAutocompleteTextField
                   item={item.storageType} />
               </TableCell>
               <TableCell className="w-[10%]">
-                <ProductListItemAutocompleteTextField
+                <EntityAutocompleteTextField
                   item={item.usageType} />
+              </TableCell>
+              <TableCell className="w-[10%]">
+                <EntityDateTimeField
+                  item={item.registeredAt} />
+              </TableCell>
+              <TableCell className="w-[20%]">
+                <EntityTextField
+                  item={item.observations} />
               </TableCell>
               <TableCell className="w-[10%]">
 

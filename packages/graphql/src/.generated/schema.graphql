@@ -43,22 +43,24 @@ type Product {
   createdAt: DateTime
   id: ID
   items: [ReportItem!]
-  legalNumber: String
   name: String
   observations: String
   packagingType: String
+  registeredAt: DateTime
   storageType: String
+  unit: String
   updatedAt: DateTime
   usageType: String
 }
 
 input ProductInput {
   id: ID
-  legalNumber: String
   name: String!
   observations: String
   packagingType: String
+  registeredAt: DateTime
   storageType: String
+  unit: String
   usageType: String
 }
 
